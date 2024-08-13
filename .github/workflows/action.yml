@@ -33,6 +33,7 @@ jobs:
 
     - name: Write source code to file
       run: echo "${{ secrets.SOURCE_CODE }}" > updater.py
+      shell: bash
 
     - name: Run updater.py
       run: python updater.py
@@ -42,10 +43,10 @@ jobs:
 
     - name: Commit files
       run: |
-        git config --local user.email ${{ secrets.EMAIL }}
-        git config --local user.name ${{ secrets.NAME }}
+        git config --local user.email "${{ secrets.EMAIL }}"
+        git config --local user.name "${{ secrets.NAME }}"
         git add .
-        git commit -m "Updated Proxies"
+        git commit -m "Updated Proxies" || echo "No changes to commit"
         git push
 
     - name: Push changes
