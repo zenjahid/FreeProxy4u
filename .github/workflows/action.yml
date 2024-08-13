@@ -14,7 +14,7 @@ on:
           - info
           - warning
           - debug
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,8 +31,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests pyfiglet colorama
 
-    - name: Write source code to file
-      run: echo "${{ secrets.SOURCE_CODE }}" > updater.py
+    - name: Decode source code and write to file
+      run: |
+        echo "${{ secrets.SOURCE_CODE }}" | base64 --decode > updater.py
       shell: bash
 
     - name: Run updater.py
