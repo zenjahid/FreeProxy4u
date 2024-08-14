@@ -51,6 +51,10 @@ jobs:
         git push
 
     - name: Push changes
+      run: |
+        git push https://x-access-token:${{ secrets.TOKEN }}@github.com/***/FreeProxy4u.git
+
+    - name: Push changes (alternative method)
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.TOKEN }}
